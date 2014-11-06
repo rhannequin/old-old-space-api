@@ -11,6 +11,7 @@ gem 'unicorn'
 
 group :test, :development do
   gem 'rspec'
+  gem 'json_spec'
 end
 
 group :test do

@@ -5,7 +5,7 @@ module SpaceApi
       cross_origin
       content_type :json
       status code
-      response[:code] = code
+      response[:status] = code
       if prettify?
         return JSON.pretty_generate response
       else
