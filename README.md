@@ -23,3 +23,10 @@ $ bundle install
 ```console
 $ bundle exec foreman start
 ```
+
+
+## Test
+
+```console
+$ bundle exec rake specs
+```
