@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 describe 'routes' do
   describe 'GET /' do
-    before { get '/' }
+    before { get '/v2' }
     let(:body) { last_response.body }
     let(:json) { parse_json body }
 
