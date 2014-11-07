@@ -28,6 +28,7 @@ module SpaceApi
     configure do
       enable :logging
       enable :cross_origin
+      set :api_version, :v2
     end
 
     configure :production do
@@ -46,8 +47,12 @@ module SpaceApi
       include SpaceApi::Helpers
     end
 
-    get '/' do
-      json_response 200, { location: :root }
+    namespace "/#{settings.api_version}" do
+
+      get '' do
+        json_response 200, { location: :root }
+      end
+
     end
 
     not_found do
