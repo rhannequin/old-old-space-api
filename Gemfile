@@ -6,6 +6,7 @@ gem 'sinatra-cross_origin'
 
 gem 'rack-cache'
 
+gem 'nokogiri'
 gem 'foreman'
 gem 'unicorn'
 

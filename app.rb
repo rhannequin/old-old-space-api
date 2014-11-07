@@ -6,6 +6,8 @@ require 'sinatra/reloader'
 
 require 'logger'
 require 'json'
+require 'open-uri'
+require 'nokogiri'
 
 require_relative 'space_api_helpers'
 
@@ -51,6 +53,18 @@ module SpaceApi
 
       get '' do
         json_response 200, { location: :root }
+      end
+
+      get '/sun' do
+        file = open('http://solarsystem.nasa.gov/planets/profile.cfm?Object=Sun&Display=Facts&System=Metric')
+        doc = Nokogiri::HTML(file.read)
+        tables = doc.css('.bodyContentTab > table table table table .l2featuretext')
+        sun = {
+          discovered_by: tables[0].content.strip,
+          discovery_date: tables[1].content.strip,
+          equatorial_inclination: tables[2].content.strip.to_f
+        }
+        json_response 200, { data: sun }
       end
 
     end
