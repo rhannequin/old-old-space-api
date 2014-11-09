@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-cross_origin'
 
+gem 'rake'
 gem 'rack-cache'
 
 gem 'nokogiri'
