@@ -51,7 +51,7 @@ module SpaceApi
 
     namespace "/#{settings.api_version}" do
 
-      get '' do
+      get '/' do
         json_response 200, { location: :root }
       end
 
@@ -65,6 +65,24 @@ module SpaceApi
           equatorial_inclination: tables[2].content.strip.to_f
         }
         json_response 200, { data: sun }
+      end
+
+      get '/health_check' do
+        routes = %w( / /sun )
+        statuses = {}
+        status = 'ok'
+        routes.each do |r|
+          route = "/#{settings.api_version}#{r}"
+          response = call env.merge('PATH_INFO' => route)
+          if response.first == 200
+            statuses[route] = 'ok'
+          else
+            status = 'ko'
+            statuses[route] = 'ko'
+          end
+          statuses[route] = response.first == 200 ? 'ok' : 'ko'
+        end
+        json_response 200, { routes: statuses, health_check: status }
       end
 
     end
