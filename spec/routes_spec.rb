@@ -15,4 +15,14 @@ describe 'routes' do
       expect(json['status']).to eq(200)
     end
   end
+
+  describe 'GET /v2/health_check' do
+    before { get '/v2/health_check' }
+    let(:body) { last_response.body }
+    let(:json) { parse_json body }
+
+    it 'includes "ok" keyword' do
+      expect(json['health_check']).to eq('ok')
+    end
+  end
 end
