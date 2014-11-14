@@ -43,5 +43,15 @@ module SpaceApi
       not(!params[:pretty].nil? && params[:pretty] == 'false')
     end
 
+    def scientific_notation(str)
+      res = str.split(':')
+      res.shift
+      res = res.join('').split('x').map(&:strip)
+      res[-1] = res.last[2..-1]
+      res = res.map(&:to_f)
+      res = res.first * (10 ** res.last)
+      res
+    end
+
   end
 end

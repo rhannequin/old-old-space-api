@@ -52,6 +52,7 @@ module SpaceApi
     namespace "/#{settings.api_version}" do
 
       get '/' do
+        scientific_notation "Scientific Notation: 6.9551 x 105 km"
         json_response 200, { location: :root }
       end
 
@@ -62,7 +63,10 @@ module SpaceApi
         sun = {
           discovered_by: tables[0].content.strip,
           discovery_date: tables[1].content.strip,
-          equatorial_inclination: tables[2].content.strip.to_f
+          equatorial_inclination: tables[2].content.strip.to_f,
+          mean_radius: scientific_notation(tables[5].content.strip),
+          equatorial_circumference: scientific_notation(tables[8].content.strip),
+          volume: scientific_notation(tables[11].content.strip)
         }
         json_response 200, { data: sun }
       end
