@@ -10,6 +10,9 @@ describe 'Sun' do
       expect(body).to have_json_path('data/discovered_by')
       expect(body).to have_json_path('data/discovery_date')
       expect(body).to have_json_path('data/equatorial_inclination')
+      expect(body).to have_json_path('data/mean_radius')
+      expect(body).to have_json_path('data/equatorial_circumference')
+      expect(body).to have_json_path('data/volume')
     end
   end
 end
