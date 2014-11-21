@@ -13,6 +13,14 @@ describe 'Sun' do
       expect(body).to have_json_path('data/mean_radius')
       expect(body).to have_json_path('data/equatorial_circumference')
       expect(body).to have_json_path('data/volume')
+      expect(body).to have_json_path('data/mass')
+      expect(body).to have_json_path('data/density')
+      expect(body).to have_json_path('data/surface_area')
+      expect(body).to have_json_path('data/surface_gravity')
+      expect(body).to have_json_path('data/escape_velocity')
+      expect(body).to have_json_path('data/sidereal_rotation_period')
+      expect(body).to have_json_path('data/surface_temperature')
+      expect(body).to have_json_path('data/effective_temperature')
     end
   end
 end

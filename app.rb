@@ -66,7 +66,15 @@ module SpaceApi
           equatorial_inclination: tables[2].content.strip.to_f,
           mean_radius: scientific_notation(tables[5].content.strip),
           equatorial_circumference: scientific_notation(tables[8].content.strip),
-          volume: scientific_notation(tables[11].content.strip)
+          volume: scientific_notation(tables[11].content.strip),
+          mass: scientific_notation(tables[14].content.strip),
+          density: tables[15].content.split(':').last.to_f,
+          surface_area: scientific_notation(tables[18].content.strip),
+          surface_gravity: scientific_notation(tables[21].content.strip),
+          escape_velocity: scientific_notation(tables[24].content.strip),
+          sidereal_rotation_period: tables[26].content.strip.to_f,
+          surface_temperature: tables[27].content.split(':').last.tr(',', '').to_f,
+          effective_temperature: tables[31].content.split(':').last.to_f
         }
         json_response 200, { data: sun }
       end
